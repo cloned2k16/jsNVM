@@ -2,7 +2,76 @@
  <HTML>
   <HEAD>
    <TITLE>Node Version List</TITLE>
+   <link 
+		rel         ="stylesheet" 
+		href        ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+		integrity   ="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+		crossorigin ="anonymous"
+	>
+    <script type=text/javascript>
+    var // 
+        _               = _ || {}
+    ,   _W              = window        
+    ,   _D              = document
+    ,   _O              = Object
+    ,   _C              = console
+    ,   _B              = _D.body
+    ,   _FN             = Function.apply
+    ,   _ById           = function  (id)                { return _D.getElementById (id);        }
+    ,   _ByQs           = function  (id)                { return _D.querySelector  (id);        }
+    ,   _setAttr        = function  (e,a,v)             { e.setAttribute(a,v); return e;        }
+    ,   _Ajax           = function  (req , cb , err)    {
+        var     xhttp;
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        } 
+        else {
+            // code for IE6, IE5
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 ) {
+             switch(xhttp.status) {
+                case 200: cb    (xhttp.responseText); 
+                        break;
+                 default: err   (xhttp.responseText); 
+                        break;
+             }
+            }
+            else log('readyState:',xhttp.readyState);
+        };
+        xhttp.open("GET", req, true);
+        xhttp.send();
+    }
+    ,   _newHtmlEl      = function  (el)                { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
+    ,    log            = function  ()                  { _FN.call(console.log, console, arguments); }
+    ,   _OrEmpty        = function  (v)                 { return v?v:''; } 
+    ;
+    
+            _Ajax ('https://nodejs.org/download/release/index.json'      
+            , function (res) { log('success:');
+             var list=JSON.parse(res);
+             var tbl=_ById('list');
+                 for (v in list){
+                  var ver=list[v];
+                  tbl.innerHTML+='<TR><TD>' +ver.version
+                                +'</TD><TD>'+_OrEmpty(ver.lts       )
+                                +'</TD><TD>'+_OrEmpty(ver.npm       )
+                                +'</TD><TD>'+_OrEmpty(ver.v8        )
+                                +'</TD><TD>'+_OrEmpty(ver.openssl   )
+                                +'</TD><TD>'+_OrEmpty(ver.zlib      )
+                                +'</TD></TR>';
+                 }
+            }
+            , function (err) { log(err);
+            });
+   </script> 
  </HEAD>
   <BODY>
+   <TABLE id=list>
+    <TR><TD width=100>VERSION</TD><TD width=100>LTS</TD><TD width=100>NPM</TD><TD width=100>V8</TD><TD width=100>OPENSSL</TD><TD width=60>ZLIB</TD></TR>
+    <TR></TR>        
+  </TABLE> 
  </BODY>  
 </HTML> 

@@ -2,12 +2,35 @@
  <HTML>
   <HEAD>
    <TITLE>Node Version List</TITLE>
-   <link 
-		rel         ="stylesheet" 
-		href        ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-		integrity   ="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
-		crossorigin ="anonymous"
-	>
+    <style type=text/css    > 
+            body    { 
+                margin: 10px 10px 10px 10px; 
+            } 
+            
+            table {
+                border:            1px solid black;
+            }
+
+            th  { 
+                border:            1px solid #AAA;
+                text-align:         left;
+                height:             32px;
+                background-color:   #EEE;
+                vertical-align:     middle;
+                font-family:        Times, Arial;
+                font-style:         bold;
+                font-size:          24;
+                padding-right:      66px;
+            }
+
+            td {
+                font-style:         italic;            
+                background-color:   #F8F8F8;
+                border-bottom:      1px solid #ddd;
+                border-right:       1px solid #888;
+            }
+            
+   </style>
     <script type=text/javascript>
     var // 
         _               = _ || {}
@@ -71,7 +94,7 @@
  </HEAD>
   <BODY>
    <TABLE id=list>
-    <TR><TD width=100>VERSION</TD><TD width=100>LTS</TD><TD width=100>NPM</TD><TD width=100>V8</TD><TD width=100>OPENSSL</TD><TD width=100>ZLIB</TD><TD width=100>UV</TD></TR>
+    <TR><TH>VERSION</TH><TH>LTS</TH><TH>NPM</TH><TH>V8</TH><TH>OPENSSL</TH><TH>ZLIB</TH><TH>UV</TH></TR>
     <TR></TR>        
   </TABLE> 
  </BODY>  

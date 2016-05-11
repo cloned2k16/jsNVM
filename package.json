@@ -2,7 +2,7 @@
   "name"                        : "jsNVM"
  ,"description"                 : "A simple Version Manager for Node using Node"
  ,"license"                     : "CC-BY-NC-4.0"
- ,"version"                     : "0.0.1"
+ ,"version"                     : "0.0.2"
  ,"main"                        : "NVM.js"
  ,"scripts"             : {
         "install"               : ""
@@ -14,7 +14,8 @@
   }
  ,"keywords"                    : [ "NVM" ,"NVM-WINDOWS" ]
  ,"dependencies"        : {
-    "request"                   : "~2.72.0"
+    "w4it"                      : ""
+   ,"request"                   : "~2.72.0"
    ,"request-promise"           : "~3.00.0"
    ,"fs"                        : "~0.0.2"
    

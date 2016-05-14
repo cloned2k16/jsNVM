@@ -1,0 +1,26 @@
+            body    { 
+                margin: 10px 10px 10px 10px; 
+            } 
+            
+            table {
+                border:            1px solid black;
+            }
+
+            th  { 
+                border:            1px solid #AAA;
+                text-align:         left;
+                height:             32px;
+                background-color:   #EEE;
+                vertical-align:     middle;
+                font-family:        Times, Arial;
+                font-style:         bold;
+                font-size:          24;
+                padding-right:      66px;
+            }
+
+            td {
+                font-style:         italic;            
+                background-color:   #F8F8F8;
+                border-bottom:      1px solid #ddd;
+                border-right:       1px solid #888;
+            }

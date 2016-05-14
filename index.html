@@ -2,100 +2,14 @@
  <HTML>
   <HEAD>
    <TITLE>Node Version List</TITLE>
-    <style type=text/css    > 
-            body    { 
-                margin: 10px 10px 10px 10px; 
-            } 
-            
-            table {
-                border:            1px solid black;
-            }
-
-            th  { 
-                border:            1px solid #AAA;
-                text-align:         left;
-                height:             32px;
-                background-color:   #EEE;
-                vertical-align:     middle;
-                font-family:        Times, Arial;
-                font-style:         bold;
-                font-size:          24;
-                padding-right:      66px;
-            }
-
-            td {
-                font-style:         italic;            
-                background-color:   #F8F8F8;
-                border-bottom:      1px solid #ddd;
-                border-right:       1px solid #888;
-            }
-            
-   </style>
-    <script type=text/javascript>
-    var // 
-        _               = _ || {}
-    ,   _W              = window        
-    ,   _D              = document
-    ,   _O              = Object
-    ,   _C              = console
-    ,   _B              = _D.body
-    ,   _FN             = Function.apply
-    ,   _ById           = function  (id)                { return _D.getElementById (id);        }
-    ,   _ByQs           = function  (id)                { return _D.querySelector  (id);        }
-    ,   _setAttr        = function  (e,a,v)             { e.setAttribute(a,v); return e;        }
-    ,   _Ajax           = function  (req , cb , err)    {
-        var     xhttp;
-        if (window.XMLHttpRequest) {
-            xhttp = new XMLHttpRequest();
-        } 
-        else {
-            // code for IE6, IE5
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 ) {
-             switch(xhttp.status) {
-                case 200: cb    (xhttp.responseText); 
-                        break;
-                 default: err   (xhttp.responseText); 
-                        break;
-             }
-            }
-            else log('readyState:',xhttp.readyState);
-        };
-        xhttp.open("GET", req, true);
-        xhttp.send();
-    }
-    ,   _newHtmlEl      = function  (el)                { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
-    ,    log            = function  ()                  { _FN.call(console.log, console, arguments); }
-    ,   _OrEmpty        = function  (v)                 { return v?v:''; } 
-    ;
-    
-            _Ajax ('http://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
-            , function (res) { log('success:');
-             var list=JSON.parse(res);
-             var tbl=_ById('list');
-                 for (v in list){
-                  var ver=list[v];
-                  tbl.innerHTML+='<TR><TD>' +ver.version
-                                +'</TD><TD>'+_OrEmpty(ver.date      )
-                                +'</TD><TD>'+_OrEmpty(ver.lts       )
-                                +'</TD><TD>'+_OrEmpty(ver.npm       )
-                                +'</TD><TD>'+_OrEmpty(ver.v8        )
-                                +'</TD><TD>'+_OrEmpty(ver.openssl   )
-                                +'</TD><TD>'+_OrEmpty(ver.zlib      )
-                                +'</TD><TD>'+_OrEmpty(ver.uv        )
-                                +'</TD></TR>';
-                 }
-            }
-            , function (err) { log(err);
-            });
-   </script> 
+    <link   href="main.css"                             rel="stylesheet" />
+    <script src ="bower_components/w4it/main.js"        type="text/javascript"></script> 
+    <script src ="leftPad.js"                           type="text/javascript"></script> 
+    <script src ="main.js"                              type="text/javascript"></script> 
  </HEAD>
   <BODY>
    <TABLE id=list>
-    <TR><TH>VERSION</TH><TH>DATE</TH><TH>LTS</TH><TH>NPM</TH><TH>V8</TH><TH>OPENSSL</TH><TH>ZLIB</TH><TH>UV</TH></TR>
+    <TR><TH>VERSION</TH><TH>ORIGIN</TH><TH>DATE</TH><TH>LTS</TH><TH>NPM</TH><TH>V8</TH><TH>OPENSSL</TH><TH>ZLIB</TH><TH>UV</TH></TR>
     <TR></TR>        
   </TABLE> 
  </BODY>  

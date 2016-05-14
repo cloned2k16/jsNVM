@@ -3,7 +3,7 @@
 var W4it        =   { 
                         name:       'Wait For It (aka W4it)' 
                     ,   desc:       'A module handling Async Wait Sleep etc..'
-                    ,   version:    '0.0.4'
+                    ,   version:    '0.0.6'
                     ,   Anima:      false
                     ,   _out:       this
                     };

@@ -72,13 +72,14 @@
     ,   _OrEmpty        = function  (v)                 { return v?v:''; } 
     ;
     
-            _Ajax ('https://nodejs.org/download/release/index.json'      
+            _Ajax ('http://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
             , function (res) { log('success:');
              var list=JSON.parse(res);
              var tbl=_ById('list');
                  for (v in list){
                   var ver=list[v];
                   tbl.innerHTML+='<TR><TD>' +ver.version
+                                +'</TD><TD>'+_OrEmpty(ver.date      )
                                 +'</TD><TD>'+_OrEmpty(ver.lts       )
                                 +'</TD><TD>'+_OrEmpty(ver.npm       )
                                 +'</TD><TD>'+_OrEmpty(ver.v8        )
@@ -94,7 +95,7 @@
  </HEAD>
   <BODY>
    <TABLE id=list>
-    <TR><TH>VERSION</TH><TH>LTS</TH><TH>NPM</TH><TH>V8</TH><TH>OPENSSL</TH><TH>ZLIB</TH><TH>UV</TH></TR>
+    <TR><TH>VERSION</TH><TH>DATE</TH><TH>LTS</TH><TH>NPM</TH><TH>V8</TH><TH>OPENSSL</TH><TH>ZLIB</TH><TH>UV</TH></TR>
     <TR></TR>        
   </TABLE> 
  </BODY>  

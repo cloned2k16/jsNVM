@@ -211,7 +211,7 @@ w4it.done(function done () { return !(_.nodeReqInProgress || _.iojsReqInProgress
                 
                 _log('num of releases found:\nNode: ',nodeLen,' IoJs: ',iojsLen);
                 
-                fs.writeFile('complete_'+total+'.json', merged, function(err) { if(err) { return _log(err);  } });
+                fs.writeFile('complete_'+total+'.json', JSON.stringify(merged), function(err) { if(err) { return _log(err);  } });
                 var rel
                 ,   curr
                 ,   last

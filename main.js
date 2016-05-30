@@ -9,6 +9,10 @@
     ,   _FN             =   Function.apply
     ,   _ById           =   function  (id)                      { return _D.getElementById (id);        }
     ,   _ByQs           =   function  (id)                      { return _D.querySelector  (id);        }
+    ,   _newHtmlEl      =   function  (el)                      { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
+    ,   _newSvgEl       =   function  (el)                      { return _D.createElementNS  ('http://www.w3.org/2000/svg'  , el);   }
+    ,   _newEL          =   function  (elm,id)                  { var el=_D.createElement    (elm); if (id) el.id=id; return el;     }
+    ,   _newTXT         =   function  (txt)                     { var el=_D.createTextNode   (txt); return el;                       }
     ,   _setAttr        =   function  (e,a,v)                   { e.setAttribute(a,v); return e;        }
     ,   _Ajax           =   function  (req , cb , err, sts )    {
         var     xhttp;
@@ -57,7 +61,7 @@
                   
                   tbl.innerHTML+='<TR><TD colspan=10>'+lbl+'ERROR: ' + err.sts+'&nbsp;'+ (err.txt?err.txt:'') +'</TD></TR>';
     }
-    ,   showList        =   function  (list)                    {
+    ,   showList        =   function    (list)                  {
             var tbl=_ById('list');
                  for (v in list){
                   var ver=list[v];
@@ -79,7 +83,7 @@
     ,   nodeError
     ,   iojsList
     ,   iojsError
-    ,   numeric         =   function  ( vs )                    {
+    ,   numeric         =   function    ( vs )                  {
         vs = vs.substring(1);
         vs = vs.split('.');
         var len = vs.length;
@@ -88,7 +92,57 @@
         return num;
         
     }
-    ,   compareVersion  =   function  ( nV ,iV)                 { return  numeric(nV) > numeric(iV); }
+    ,   compareVersion  =   function    ( nV ,iV)               { return  numeric(nV) > numeric(iV); }
+    ,   raimbowCol      =   function    (i, ofMax, r, ph)       {
+     var    
+            f   = 360 / ofMax
+     ,      rd  = Math.PI / 180
+     ,      mid = 128
+     ,      ph  = (ph ||  40) % 360
+     ,      r   = (r  || 127) 
+     ,      R   = Math.round(Math.sin((f*i-  0+ph)*rd) * r + mid)
+     ,      G   = Math.round(Math.sin((f*i-120+ph)*rd) * r + mid)
+     ,      B   = Math.round(Math.sin((f*i-240+ph)*rd) * r + mid)
+     ,      c   
+     ;
+      R= R>160?255:R>96?127:0;
+      G= G>160?255:G>96?127:0;
+      B= B>160?255:B>96?127:0;
+      c = (R*0x10000+G*0x100+B)
+      return c;
+    }
+    ,   showGraph       =   function    (values,col)            {
+        var my      = this
+        ,   dv      = _ById('svgDiv')
+        ,   bound   = dv.getBoundingClientRect()
+        ,   W       = bound.width
+        ,   H       = bound.height
+        ,   len     = values.length
+        ,   min     = new Date(values[len-1].date).getTime()
+        ,   max     = new Date(values[0]    .date).getTime()
+        ,   step    = W/(max-min)
+        ,   i       = 0
+        ,   x       = 0
+        ,   y       = 0
+        ;
+        //log ('min-max:',min,max,step);
+        
+        for (i=0; i<len; i++) {
+         var val =   values[len-i-1];
+         y = H-numeric(val.version)   / 100000000*H
+         x = (new Date(val.date).getTime()-min) * step
+         
+         var    col     = raimbowCol(i,len/8).toString(16)
+                col     = '0'.repeat(6-col.length)+col;
+         var    el     = _newHtmlEl('div')        
+                el.setAttribute('class','verLab');
+                el.setAttribute('style','left: '+((x>>0)-48)+'px; top:'+((y>>0)-32)+'px; color:#'+col+';');
+                el.innerHTML=val.version;
+                dv.appendChild(el);
+        } 
+        
+        
+    }
     ;
     
     
@@ -153,7 +207,13 @@
                 }
                 log (j,k, merged.length);
                 
-                smmry.innerHTML = "Found <b>"+merged.length+"</b> releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS";
+                smmry.innerHTML = "Found <b>"+merged.length+"</b> releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS"
+                                + "<br> latest: " +new Date(merged[0].date)
+                ;
+                
+                
                 showList(merged);
+                
+                showGraph(merged);
                   
             });

@@ -22,3 +22,21 @@
                 border-bottom:      1px solid #ddd;
                 border-right:       1px solid #888;
             }
+            
+            #svgDiv {
+                xbackground-color:  #EEE;
+                position:          relative;
+                height:            200px;
+                width:             96%;
+            }
+            
+            .verLab {
+                background-color:   #CCC;
+                position: absolute;
+                display: block;
+                padding: 4px;
+                border-left:        1px solid #aaa;
+                border-bottom:      2px solid #888;
+                border-right:       2px solid #888;
+                
+            }

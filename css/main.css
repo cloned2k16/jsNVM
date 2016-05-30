@@ -1,42 +1,47 @@
-            body    { 
-                margin: 10px 10px 10px 10px; 
+            body                    { 
+               
+                margin-top          :   10px;
+                padding             :   0;
             } 
             
-            table {
-                border:            1px solid black;
+            table                   {
+                margin-left         :   auto;
+                margin-right        :   auto;
+                border              :   1px solid black;
             }
 
-            th  { 
-                border:            1px solid #AAA;
-                text-align:         left;
-                height:             32px;
-                background-color:   #EEE;
-                vertical-align:     middle;
-                font-family:        Times, Arial;
-                padding-right:      66px;
+            th                      { 
+                border              :   1px solid #AAA;
+                text-align          :   left;
+                height              :   32px;
+                background-color    :   #EEE;
+                vertical-align      :   middle;
+                font-family         :   Times, Arial;
+                padding-right       :   66px;
             }
 
-            td {
-                font-style:         italic;            
-                background-color:   #F8F8F8;
-                border-bottom:      1px solid #ddd;
-                border-right:       1px solid #888;
+            td                      {
+                font-style          :   italic;            
+                background-color    :   #F0F4F8;
+                border-bottom       :   1px solid #ddd;
+                border-right        :   1px solid #888;
             }
             
-            #svgDiv {
-                xbackground-color:  #EEE;
-                position:          relative;
-                height:            200px;
-                width:             96%;
+            #svgDiv                 {
+                background-color    :   #F8F8F8;
+                position            :   relative;
+                height              :   200px;
+                display             :   block;
             }
             
-            .verLab {
-                background-color:   #CCC;
-                position: absolute;
-                display: block;
-                padding: 4px;
-                border-left:        1px solid #aaa;
-                border-bottom:      2px solid #888;
-                border-right:       2px solid #888;
+            .verLab                 {
+                background-color    :   #CCC;
+                position            :   absolute;
+                display             :   block;
+                padding             :   4px;
+                border-top          :   1px solid #aaa;
+                border-left         :   1px solid #aaa;
+                border-bottom       :   2px solid #888;
+                border-right        :   2px solid #888;
                 
             }

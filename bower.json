@@ -1,11 +1,11 @@
 {
-        "name"          : "jsNVM"
-    ,   "description"   : "A simple Node Version Manager written in Javascript"
-    ,   "main"          : "listAvailable.js"
+        "name"          :   "jsNVM"
+    ,   "description"   :   "A simple Node Version Manager written in Javascript"
+    ,   "main"          :   "listAvailable.js"
     ,   "authors"       : [ "Paolo Lioy" ]
-    ,   "license"       : "CC-BY-NC-4.0"
+    ,   "license"       :   "CC-BY-NC-4.0"
     ,   "keywords"      : [ "NVM", "W4it" ]
-    ,   "homepage"      : "https://github.com/cloned2k16/"
+    ,   "homepage"      :   "https://github.com/cloned2k16/"
     
     ,   "ignore"        : [
                             "**/.*"
@@ -17,6 +17,6 @@
                         
     ,   "dependencies"  : {
                             "w4it"              :   ""
-                        ,   "ngstorage"         :   ""
+                        ,   "left_pad"          :   ""
                         }
 }

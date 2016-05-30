@@ -1,15 +1,16 @@
     var // 
-        _               = _ || {}
-    ,   _W              = window        
-    ,   _D              = document
-    ,   _O              = Object
-    ,   _C              = console
-    ,   _B              = _D.body
-    ,   _FN             = Function.apply
-    ,   _ById           = function  (id)                    { return _D.getElementById (id);        }
-    ,   _ByQs           = function  (id)                    { return _D.querySelector  (id);        }
-    ,   _setAttr        = function  (e,a,v)                 { e.setAttribute(a,v); return e;        }
-    ,   _Ajax           = function  (req , cb , err, sts )  {
+        _               =   _ || {}
+    ,   leftPad         =   _padLeft.func
+    ,   _W              =   window        
+    ,   _D              =   document
+    ,   _O              =   Object
+    ,   _C              =   console
+    ,   _B              =   _D.body
+    ,   _FN             =   Function.apply
+    ,   _ById           =   function  (id)                      { return _D.getElementById (id);        }
+    ,   _ByQs           =   function  (id)                      { return _D.querySelector  (id);        }
+    ,   _setAttr        =   function  (e,a,v)                   { e.setAttribute(a,v); return e;        }
+    ,   _Ajax           =   function  (req , cb , err, sts )    {
         var     xhttp;
         
         if (window.XMLHttpRequest) {
@@ -25,7 +26,7 @@
         xhttp.onreadystatechange = function() {
             if (sts) sts(xhttp);
             if (xhttp.readyState == 1 ) {
-                xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+                //xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             }    
             else if (xhttp.readyState == 4 ) {
              switch(xhttp.status) {
@@ -41,33 +42,22 @@
             else log(xhttp.readyState,xhttp.status);
         };
        
-        if ("withCredentials" in xhttp) {  // xhttp for Chrome/Firefox/Opera/Safari.
-            xhttp.open('GET', url, true);
-        } 
-        else if (typeof XDomainRequest != "undefined") { // XDomainRequest for IE.
-            xhttp = new XDomainRequest();
-            xhttp.open('GET', url);
-        } 
-        else { // CORS not supported.
-            //xhttp = null;
-        }
-        
-        //        xhttp.open("GET", req, true);
+        xhttp.open("GET", req, true);
         
         try {
          xhttp.send();
         }
         catch (e) { log (e); }    
     }
-    ,   _newHtmlEl      = function  (el)                { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
-    ,    log            = function  ()                  { _FN.call(console.log, console, arguments); }
-    ,   _OrEmpty        = function  (v)                 { return v?v:''; } 
-    ,   showError       = function  (lbl, err)          {
+    ,   _newHtmlEl      =   function  (el)                      { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
+    ,    log            =   function  ()                        { _FN.call(console.log, console, arguments); }
+    ,   _OrEmpty        =   function  (v)                       { return v?v:''; } 
+    ,   showError       =   function  (lbl, err)                {
             var tbl=_ById('list');
                   
                   tbl.innerHTML+='<TR><TD colspan=10>'+lbl+'ERROR: ' + err.sts+'&nbsp;'+ (err.txt?err.txt:'') +'</TD></TR>';
     }
-    ,   showList        = function  (list)              {
+    ,   showList        =   function  (list)                    {
             var tbl=_ById('list');
                  for (v in list){
                   var ver=list[v];
@@ -89,7 +79,7 @@
     ,   nodeError
     ,   iojsList
     ,   iojsError
-    ,   numeric                 = function  ( vs )      {
+    ,   numeric         =   function  ( vs )                    {
         vs = vs.substring(1);
         vs = vs.split('.');
         var len = vs.length;
@@ -98,12 +88,12 @@
         return num;
         
     }
-    ,   compareVersion          = function  ( nV ,iV)   { return  numeric(nV) > numeric(iV); }
+    ,   compareVersion  =   function  ( nV ,iV)                 { return  numeric(nV) > numeric(iV); }
     ;
     
     
     
-            _Ajax ('http://nodejs.org/dist/index.jsonn' //'https://nodejs.org/download/release/index.json'      
+            _Ajax ('http://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
             , function (res) { log('success:');
                 var list        =   JSON.parse(res);
                     nodeList    =   list;
@@ -116,7 +106,7 @@
                 }
             });
             
-            _Ajax ('https://iojs.org/dist/index.jsonn'
+            _Ajax ('https://iojs.org/dist/index.json'
             , function (res) { log('success:');
                 var list        =   JSON.parse(res);
                     iojsList    =   list;
@@ -142,6 +132,7 @@
                 ,   k       =   0
                 ,   merged  =   []
                 ,   empty   =   'v'
+                ,   smmry   =   _ById('smmry');
                 ;
                 
                 
@@ -162,7 +153,7 @@
                 }
                 log (j,k, merged.length);
                 
-                
+                smmry.innerHTML = "Found N."+merged.length+" releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS";
                 showList(merged);
                   
             });

@@ -168,10 +168,9 @@
             );
             
             
-            W4it.done ( function done () {   return !getIoJsListInProgress && !getIoJsListInProgress; }       
+            W4it.done ( function done () {   return !getNodeListInProgress && !getIoJsListInProgress; }       
             ,           function then () {
                 
-                log ('both finished right now',getIoJsListInProgress,getIoJsListInProgress);
                 var total   =   0
                 ,   nodeLen =   nodeList? nodeList.length : 0
                 ,   iojsLen =   iojsList? iojsList.length : 0

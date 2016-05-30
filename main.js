@@ -213,8 +213,7 @@
                 log (j,k, merged.length);
                 
                 smmry.innerHTML = "Found <b>"+merged.length+"</b> releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS"
-                                + "<br> latest: " +new Date(merged[0].date)
-                ;
+                                ;
                 
                 
                 showList(merged);

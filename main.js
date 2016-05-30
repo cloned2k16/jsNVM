@@ -153,7 +153,7 @@
                 }
                 log (j,k, merged.length);
                 
-                smmry.innerHTML = "Found N."+merged.length+" releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS";
+                smmry.innerHTML = "Found <b>"+merged.length+"</b> releases ..<br>  ("+j+") from NODE and ("+k+") from IO.JS";
                 showList(merged);
                   
             });

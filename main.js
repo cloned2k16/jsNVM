@@ -143,7 +143,7 @@
         
         for (i=0; i<len; i++) {
          var val =   values[len-i-1];
-         y = H-numeric(val.version)   / 100000000*H
+         y = H-numeric(val.version)   / 100000000*H *1.25
          x = (new Date(val.date).getTime()-min) * step
          
          var    col     = raimbowCol(i,len/2).toString(16)
@@ -206,7 +206,7 @@
                 for (i=0; i < total; i++) {
                   var nodeVer = (nodeList && nodeList[j]) ?  nodeList[j].version : empty;
                   var iojsVer = (iojsList && iojsList[k]) ?  iojsList[k].version : empty;
-                  //merged[i] = compareVersion(nodeVer,iojsVer) ? nodeList[j++] : iojsList[k++];
+                 
                   if (compareVersion(nodeVer,iojsVer))  { merged[i]=nodeList[j++]; merged[i].origin='NODE'; }
                   else                                  { merged[i]=iojsList[k++]; merged[i].origin='IO.JS'; }
                 }

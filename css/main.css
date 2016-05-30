@@ -30,7 +30,13 @@
             #svgDiv                 {
                 background-color    :   #F8F8F8;
                 position            :   relative;
-                height              :   200px;
+                height              :   180px;
+                display             :   block;
+            }
+            .yearMark               {
+                background-color    :   #008;
+                position            :   absolute;
+                width               :   1px;
                 display             :   block;
             }
             

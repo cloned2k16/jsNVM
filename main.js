@@ -111,6 +111,15 @@
       c = (R*0x10000+G*0x100+B)
       return c;
     }
+    ,   addYearMark     =   function    (dv, date,start,step)     {
+        var mrk = _newHtmlEl('div')
+            mrk.setAttribute('class','yearMark');
+            
+        var x= (date.getTime()-start) * step;
+            mrk.innerHTML=date.getFullYear();
+            mrk.setAttribute('style','left: '+(x>>0)+'px; top:0px; height:100%;');
+            dv.appendChild(mrk);
+    }
     ,   showGraph       =   function    (values,col)            {
         var my      = this
         ,   dv      = _ById('svgDiv')
@@ -126,6 +135,11 @@
         ,   y       = 0
         ;
         
+        addYearMark(dv,new Date('1-1-2012'),min,step);
+        addYearMark(dv,new Date('1-1-2013'),min,step);
+        addYearMark(dv,new Date('1-1-2014'),min,step);
+        addYearMark(dv,new Date('1-1-2015'),min,step);
+        addYearMark(dv,new Date('1-1-2016'),min,step);
         
         for (i=0; i<len; i++) {
          var val =   values[len-i-1];

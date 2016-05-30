@@ -11,32 +11,62 @@
     ,   _setAttr        = function  (e,a,v)                 { e.setAttribute(a,v); return e;        }
     ,   _Ajax           = function  (req , cb , err, sts )  {
         var     xhttp;
+        
         if (window.XMLHttpRequest) {
             xhttp = new XMLHttpRequest();
+            
         } 
         else {
             // code for IE6, IE5
             xhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
+
         
         xhttp.onreadystatechange = function() {
             if (sts) sts(xhttp);
-            if (xhttp.readyState == 4 ) {
+            if (xhttp.readyState == 1 ) {
+                xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+            }    
+            else if (xhttp.readyState == 4 ) {
              switch(xhttp.status) {
-                case 200: cb    (xhttp.responseText); 
+                case 200: 
+                        cb    (xhttp.responseText); 
                         break;
-                 default: err   (xhttp.responseText); 
+                 default: 
+                        log(xhttp);
+                        err   ({'sts' : xhttp.status ,'txt' : xhttp.responseText}); 
                         break;
              }
             }
-            //else log('readyState:',xhttp.readyState);
+            else log(xhttp.readyState,xhttp.status);
         };
-        xhttp.open("GET", req, true);
-        xhttp.send();
+       
+        if ("withCredentials" in xhttp) {  // xhttp for Chrome/Firefox/Opera/Safari.
+            xhttp.open('GET', url, true);
+        } 
+        else if (typeof XDomainRequest != "undefined") { // XDomainRequest for IE.
+            xhttp = new XDomainRequest();
+            xhttp.open('GET', url);
+        } 
+        else { // CORS not supported.
+            //xhttp = null;
+        }
+        
+        //        xhttp.open("GET", req, true);
+        
+        try {
+         xhttp.send();
+        }
+        catch (e) { log (e); }    
     }
     ,   _newHtmlEl      = function  (el)                { return _D.createElementNS  ('http://www.w3.org/1999/xhtml', el);   }
     ,    log            = function  ()                  { _FN.call(console.log, console, arguments); }
     ,   _OrEmpty        = function  (v)                 { return v?v:''; } 
+    ,   showError       = function  (lbl, err)          {
+            var tbl=_ById('list');
+                  
+                  tbl.innerHTML+='<TR><TD colspan=10>'+lbl+'ERROR: ' + err.sts+'&nbsp;'+ (err.txt?err.txt:'') +'</TD></TR>';
+    }
     ,   showList        = function  (list)              {
             var tbl=_ById('list');
                  for (v in list){
@@ -73,29 +103,29 @@
     
     
     
-            _Ajax ('http://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
+            _Ajax ('http://nodejs.org/dist/index.jsonn' //'https://nodejs.org/download/release/index.json'      
             , function (res) { log('success:');
                 var list        =   JSON.parse(res);
                     nodeList    =   list;
+                    log('got Node list');
             }
-            , function (err) { log(err); nodeError=err; }
+            , function (err) { nodeError=err; log('ERR:',err)}
             , function (xhttp) {
                 if (xhttp.readyState == 4) {
-                    getNodeListInProgress=false;
-                    log('got Node list');
+                   getNodeListInProgress=false;
                 }
             });
             
-            _Ajax ('https://iojs.org/dist/index.json'
+            _Ajax ('https://iojs.org/dist/index.jsonn'
             , function (res) { log('success:');
                 var list        =   JSON.parse(res);
                     iojsList    =   list;
+                    log('got IoJs list');
             }
-            , function (err) { log(err); iojsError=err; }
+            , function (err) { iojsError=err; log('ERR:',err); }
             , function (xhttp) {
                 if (xhttp.readyState == 4) {
                     getIoJsListInProgress=false;
-                    log('got IoJs list');
                 }
             });
             
@@ -115,10 +145,12 @@
                 ;
                 
                 
-                if (nodeError) log(nodeError);
+                if (nodeError) { log(nodeError); showError('NODE:',nodeError); }
                 else total += nodeLen;
-                if (nodeError) log(nodeError);
+                
+                if (iojsError) { log(iojsError); showError('IOJS:',iojsError); }
                 else total += iojsLen;
+                
                 log (total,nodeLen,iojsLen);
                 
                 for (i=0; i < total; i++) {

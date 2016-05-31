@@ -141,10 +141,17 @@
         addYearMark(dv,new Date('1-1-2015'),min,step);
         addYearMark(dv,new Date('1-1-2016'),min,step);
         
+        var alt     = _newHtmlEl('div')
+        ,   altTxt  = null
+        ;
+            alt.setAttribute('class','altLabl');
+            document.body.appendChild(alt);
+        
         for (i=0; i<len; i++) {
          var val =   values[len-i-1];
          y = H-numeric(val.version)   / 100000000*H *1.25
          x = (new Date(val.date).getTime()-min) * step
+         
          
          var    col     = raimbowCol(i,len/2).toString(16)
                 col     = '0'.repeat(6-col.length)+col;
@@ -152,6 +159,27 @@
                 el.setAttribute('class','verLab');
                 el.setAttribute('style','left: '+((x>>0))+'px; top:'+((y>>0)-32)+'px; color:#'+col+';');
                 el.innerHTML=val.version;
+                
+                el.addEventListener('mouseenter', function (e){
+                   if (!altTxt) { 
+                    alt.innerHTML= altTxt = this.innerHTML; 
+                    alt.style.visibility = 'visible';
+                   }
+                   this.xx=e.clientX;
+                   this.yy=e.clientY;
+                });
+                
+                el.addEventListener('mousemove', function (e){
+                   alt.style.top  = ''+ (e.clientY -48)  +'px';
+                   alt.style.left = ''+ (e.clientX -48)   +'px';
+                });
+                
+                el.addEventListener('mouseout', function (e){
+                   alt.style.visibility = 'hidden';
+                   altTxt = null;
+                   alt.innerHTML = '';
+                });
+                
                 dv.appendChild(el);
         } 
         

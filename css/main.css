@@ -51,3 +51,20 @@
                 border-right        :   2px solid #888;
                 
             }
+            .verLab:hover           {
+                cursor              :   pointer;
+            }
+            
+            .altLabl                 {
+                visibility          :   hidden;
+                z-index             :   11;
+                background-color    :   #FF8;
+                position            :   absolute;
+                display             :   block;
+                padding             :   4px;
+                border-top          :   1px solid #aaa;
+                border-left         :   1px solid #aaa;
+                border-bottom       :   2px solid #888;
+                border-right        :   2px solid #888;
+                
+            }

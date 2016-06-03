@@ -158,7 +158,9 @@
          var    el     = _newHtmlEl('div')        
                 el.setAttribute('class','verLab');
                 el.setAttribute('style','left: '+((x>>0))+'px; top:'+((y>>0)-32)+'px; color:#'+col+';');
-                el.innerHTML=val.version;
+                if (val.origin=='NODE')
+                      el.innerHTML='<a href="https://nodejs.org/docs/'+val.version+'/api/">'+val.version+'</a>';
+                else  el.innerHTML='<a href="https://iojs.org/docs/'  +val.version+'/api/">'+val.version+'</a>';
                 
                 el.addEventListener('mouseenter', function (e){
                    if (!altTxt) { 
@@ -172,6 +174,7 @@
                 el.addEventListener('mousemove', function (e){
                    alt.style.top  = ''+ (e.clientY -48)  +'px';
                    alt.style.left = ''+ (e.clientX -48)   +'px';
+                   
                 });
                 
                 el.addEventListener('mouseout', function (e){

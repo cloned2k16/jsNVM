@@ -159,8 +159,8 @@
                 el.setAttribute('class','verLab');
                 el.setAttribute('style','left: '+((x>>0))+'px; top:'+((y>>0)-32)+'px; color:#'+col+';');
                 if (val.origin=='NODE')
-                      el.innerHTML='<a href="https://nodejs.org/docs/'+val.version+'/api/">'+val.version+'</a>';
-                else  el.innerHTML='<a href="https://iojs.org/docs/'  +val.version+'/api/">'+val.version+'</a>';
+                      el.innerHTML='<a target=docs href="https://nodejs.org/docs/'+val.version+'/api/">'+val.version+'</a>';
+                else  el.innerHTML='<a target=docs href="https://iojs.org/docs/'  +val.version+'/api/">'+val.version+'</a>';
                 
                 el.addEventListener('mouseenter', function (e){
                    if (!altTxt) { 

@@ -65,7 +65,7 @@
             var tbl=_ById('list');
                  for (v in list){
                   var ver=list[v];
-                  tbl.innerHTML+='<TR><TD><A href="'+(ver.origin=='NODE'?'https://nodejs.org/dist/':'https://iojs.org/dist/') 
+                  tbl.innerHTML+='<TR><TD><A target=dist href="'+(ver.origin=='NODE'?'https://nodejs.org/dist/':'https://iojs.org/dist/') 
                                 +ver.version+'/">'+ver.version+'</A>'
                                 +'</TD><TD>'+_OrEmpty(ver.origin    )
                                 +'</TD><TD>'+_OrEmpty(ver.date      )

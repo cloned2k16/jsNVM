@@ -194,7 +194,7 @@
     
     
     
-            _Ajax ('http://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
+            _Ajax ('https://nodejs.org/dist/index.json' //'https://nodejs.org/download/release/index.json'      
             , function (res) { 
                 var list        =   JSON.parse(res);
                     nodeList    =   list;

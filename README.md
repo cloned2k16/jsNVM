@@ -1,6 +1,6 @@
 # jsNVM
 
-** this project has moved and it would be available soon under a new name [miN-Nim](https://github.com/cloned2k16/miN-Nim)
+** this project has moved and it would be available soon under a new name [niMan](https://github.com/cloned2k16/niMan)
 
 Node Version Manager (using nodejs) 
 [![Build Status](https://travis-ci.org/cloned2k16/jsNVM.svg?branch=master)](https://travis-ci.org/cloned2k16/jsNVM)

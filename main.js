@@ -153,6 +153,7 @@
         addYearMark(dv,new Date('1-1-2016'),min,step);
         addYearMark(dv,new Date('1-1-2017'),min,step);
         
+        // getting work done in advance ;)
         addYearMark(dv,new Date('1-1-2018'),min,step);
         
         var alt     = _newHtmlEl('div')
@@ -163,7 +164,7 @@
         
         for (i=0; i<len; i++) {
          var val =   values[len-i-1];
-         y = H-numeric(val.version)   / 100000000*H *1.00
+         y = H-numeric(val.version)   / 100000000*H *0.90
          x = (new Date(val.date).getTime()-min) * step
          
          

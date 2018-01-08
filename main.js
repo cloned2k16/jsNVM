@@ -144,17 +144,12 @@
         ,   i       = 0
         ,   x       = 0
         ,   y       = 0
+		,   yy      = 2012
+        ,   YY      = (new Date()).getFullYear() 
         ;
-        
-        addYearMark(dv,new Date('1-1-2012'),min,step);
-        addYearMark(dv,new Date('1-1-2013'),min,step);
-        addYearMark(dv,new Date('1-1-2014'),min,step);
-        addYearMark(dv,new Date('1-1-2015'),min,step);
-        addYearMark(dv,new Date('1-1-2016'),min,step);
-        addYearMark(dv,new Date('1-1-2017'),min,step);
-        
-        // getting work done in advance ;)
-        addYearMark(dv,new Date('1-1-2018'),min,step);
+		
+        // let the computer do the math , that's why we bought it in first place ;)		
+        for (;yy<=YY;yy++) addYearMark(dv,new Date('1-1-'+yy),min,step);
         
         var alt     = _newHtmlEl('div')
         ,   altTxt  = null

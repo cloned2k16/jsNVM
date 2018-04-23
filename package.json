@@ -1,19 +1,18 @@
-{ 
-  "name"                        :   "jsNVM(gh-pages)"
- ,"description"                 :   "A simple Version Manager for Node using Node"
- ,"license"                     :   "CC-BY-NC-4.0"
- ,"keywords"                    : [ "NVM" ,"NVM-WINDOWS" ]
- ,"dependencies"        : {
-                                    "left_pad"          :   ""
-                                ,   "w4it"              :   ""
-                                ,   "request"           :   ""
-                                ,   "fs"                :   ""
-                                ,   "express"           :   ""
-                                ,   "morgan"            :   ""
-
- }
- ,"author"                      :   "Paolo Lioy"
-
+{
+  "name": "jsNVM(gh-pages)",
+  "description": "A simple Version Manager for Node using Node",
+  "license": "CC-BY-NC-4.0",
+  "keywords": [
+    "NVM",
+    "NVM-WINDOWS"
+  ],
+  "dependencies": {
+    "left_pad": "",
+    "w4it": "",
+    "request": "",
+    "fs": "",
+    "express": "",
+    "morgan": ""
+  },
+  "author": "Paolo Lioy"
 }
-  
-  

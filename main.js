@@ -71,7 +71,30 @@
                   
                   tbl.innerHTML+='<TR><TD colspan=10>'+lbl+'ERROR: ' + err.sts+'&nbsp;'+ (err.txt?err.txt:'') +'</TD></TR>';
     }
+    ,	numMainVersions
+    ,   onlyMainVersions=   function    (list)                  {
+        var vi = {}
+        ,   vl = []
+        ,   v
+        ,   i
+        ,   hiv
+        ,   n
+        ;
+        for (i in list){
+            v = list[i];
+            n = numeric(v.version);
+            hiv = n.substring(0,3);
+            vo  = vi[hiv];
+            if (vo==ND || (vo.version - v.version)>0)   vi[hiv]=v;  
+            
+        }
+        for (i in vi) vl.push(vi[i]);
+	numMainVersions = vl.length;
+        return vl;
+    }
     ,   showList        =   function    (list)                  {
+	    onlyMjr=onlyMainVersions(list);
+	    
             var tbl=_ById('list');
                  for (v in list){
                   var ver=list[v];
@@ -159,13 +182,13 @@
         
         for (i=0; i<len; i++) {
          var val =   values[len-i-1];
-         y = H-numeric(val.version)   / 100000000*H *0.88
-         x = (new Date(val.date).getTime()-min) * step
+         y = H-numeric(val.version)   / 100000000*H *(8.8/numMainVersions);
+         x = (new Date(val.date).getTime()-min) * step;
          
          
-         var    col     = raimbowCol(i,len/2).toString(16)
+         var    col     = raimbowCol(i,len/2).toString(16);
                 col     = '0'.repeat(6-col.length)+col;
-         var    el     = _newHtmlEl('div')        
+         var    el     = _newHtmlEl('div');    
                 el.setAttribute('class','verLab');
                 el.setAttribute('style','left: '+((x>>0))+'px; top:'+((y>>0)-32)+'px; color:#'+col+';');
                 if (val.origin=='NODE')

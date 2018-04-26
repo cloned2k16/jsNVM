@@ -1,3 +1,4 @@
+
 # jsNVM
 Node Version Manager (using nodejs) 
 this project has been replaced by niMan (https://github.com/cloned2k16/niMan)  
@@ -10,3 +11,9 @@ check version list <b>[Complete Node Release List] (http://cloned2k16.github.io/
 <image src=./njsv.jpg>
 
 
+### issues
+the very big list of released versions is making this really slow,  
+we should implement an on the fly rendering  
+in order to give a better user experience  
+but require a somehow tricky solution ,unless we cache and synch the data somewhere else ..  
+since the data is collected over two different servers ..  

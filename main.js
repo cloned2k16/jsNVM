@@ -326,7 +326,6 @@
                 onlyMjr =   onlyMainVersions(merged);
                 T.stop();
                 
-                var //T
                 T=new Tmr('show graph');
                 showGraph(merged);
                 T.stop();

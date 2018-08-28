@@ -23,6 +23,10 @@
     app.use(morgan('dev'));                                                 // log every request to the console
     //app.use(function(req, res){ res.sendStatus(404);});                     // simply NOT FOUND
     // ====================================================== Main Loop
-    app.listen(_.LISTEN_PORT);
-    _.log("Express server listening on http://localhost:"+_.LISTEN_PORT+"/");
+	var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || _.LISTEN_PORT
+	,	ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
+	;
+	
+    app.listen(port,ip);
+    _.log("Express server listening on [ "+ip+" : "+_.LISTEN_PORT+" ]");
  

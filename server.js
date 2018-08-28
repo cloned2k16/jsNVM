@@ -44,7 +44,7 @@
 	
 			_APP.PUBLIC_HTML    =   '/'; 
             _APP.BOWER_DIR      =   '/bower_components';
-            _APP.LISTEN_PORT    =   process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1111 ;
+            _APP.LISTEN_PORT    =   process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080 ;
             _APP.URL_BASE       =   'http://localhost';
             _APP.out            =   _log
             _APP.log            =   _log
@@ -71,6 +71,8 @@
                     req.end();
                 return req;    
             }
+			
+			_.log(process.env);
 			
             try{   
                 _.log(HttpD.Name,HttpD.Version);

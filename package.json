@@ -1,7 +1,7 @@
 {
 		"name"				: "jsNVM(gh-pages)"
 	,	"description"		: "A simple Version Manager for Node using Node"
-    ,   "version"			: "0.0.11"
+    ,   "version"			: "0.0.12"
 	,	"license"			: "CC-BY-NC-4.0"
 	,	"keywords"			: [
 									"NVM"
@@ -15,5 +15,10 @@
 	,	"scripts"			: {
 									"start": "node server.js"
 							}
+    ,   "repository"		: {
+									"type": "git"
+								,   "url": 	"git@github.com:cloned2k16/jsNVM.git"
+							}
+							
 	,	"author": "Paolo Lioy"
 }

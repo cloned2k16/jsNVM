@@ -1,24 +1,24 @@
 {
-		"name"				: "jsNVM(gh-pages)"
-	,	"description"		: "A simple Version Manager for Node using Node"
-    ,   "version"			: "0.0.12"
-	,	"license"			: "CC-BY-NC-4.0"
-	,	"keywords"			: [
-									"NVM"
-								,	"NVM-WINDOWS"
-							]
-	,	"dependencies"		: {
-									"left_pad"		: ""
-								,   "w4it"			: ""
-								,	"http-d"		: ""
-							}
-	,	"scripts"			: {
-									"start": "node server.js"
-							}
-    ,   "repository"		: {
-									"type": "git"
-								,   "url": 	"git@github.com:cloned2k16/jsNVM.git"
-							}
-							
-	,	"author": "Paolo Lioy"
+			"name": "jsNVM(gh-pages)",
+			"description": "A simple Version Manager for Node using Node",
+			"version": "0.0.13",
+			"license": "CC-BY-NC-4.0",
+			"keywords": [
+						"NVM",
+						"NVM-WINDOWS"
+			],
+			"dependencies": {
+						"left_pad": "",
+						"w4it": "",
+						"http-d": "",
+						"sync-request": ""
+			},
+			"scripts": {
+						"start": "node server.js"
+			},
+			"repository": {
+						"type": "git",
+						"url": "git@github.com:cloned2k16/jsNVM.git"
+			},
+			"author": "Paolo Lioy"
 }

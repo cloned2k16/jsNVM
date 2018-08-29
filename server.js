@@ -11,12 +11,13 @@
     ,       Http            	=   require ('https')
     ,       HttpD           	=   require ('http-d')
     ,       LeftPad         	=   require ('left_pad')
-    ,       ChildProc       	=   require ('child_process')
+	,       request             =   require ("sync-request")
+	,		ChildProc       	=   require ('child_process')
     ,       Exec            	=   ChildProc.execFileSync 
     ,       NIM             	=   'nim'
     ,       _CON            	=   console
     ,       pathSep         	=   Path.sep
-    ,       strFormat       	=   function ()             {
+    ,       strFormat       	=   ()					=>  {
                 var s   = arguments[0]
                 ,   i   = 1
                 ;
@@ -40,12 +41,26 @@
     ,       _wrn            	=   (...a)              =>  { _cout(_CON.warn   ,...a); }
     ,       _err            	=   (...a)              =>  { _cout(_CON.error  ,...a); }
     ,       toLocal         	=   (s)                 =>  { return s.replace(new RegExp('/', 'g'),'\\'); }
+	,       getResult           =   async prms          =>  {
+				let data=await prms;
+				return data;
+	}
+	, 	 	getPage 			=	 url 				=> 	{
+				try {
+					const	res 	= request('GET',url)  
+					,		data	= res.getBody('utf8')
+					_.log('$',data);
+					;
+					return data;	
+				} 
+				catch (err) { _.log(err); }
+	}
 	;
 	
 			_APP.PUBLIC_HTML    =   '/'; 
             _APP.BOWER_DIR      =   '/bower_components';
             _APP.LISTEN_PORT    =   process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080 ;
-            _APP.URL_BASE       =   'http://localhost';
+            _APP.URL_BASE       =   'http://0.0.0.0';
             _APP.out            =   _log
             _APP.log            =   _log
             _APP.wrn            =   _wrn
@@ -60,11 +75,10 @@
     ,   	args                =   me.argv
     ,   	cmdLn               =   args[0]
     ,   	myName              =   args[1]
-    ,   	show                =   true
     ;
 
 	
-	        Http.head       	=   (url, cb)           =>  {                                               //  keep it simple :D
+	        Http.head       	=   (url, cb)           =>  {                                               
                 var options=Url.parse(url);
                 options.method='HEAD';
                 var req=Http.request(options,cb);
@@ -72,30 +86,23 @@
                 return req;    
             }
 			
-			_.log(process.env);
-			
+		
             try{   
                 _.log(HttpD.Name,HttpD.Version);
                 
                 HttpD.setStaticFolders  ([__dirname + _.PUBLIC_HTML,__dirname + _.BOWER_DIR]);
-                HttpD.map               ('/do'     ,function (req,res,query) {
-                    
-                    var fn  = query;
-					_.log("request: ",fn);
-                    return "hola que tal ?";
+                HttpD.map               ('/do'     ,  (req,res,query) => {
+					var uri	=("http://"+query).replace(/\&/,"?")
+					,	data=  getPage(uri)
+					;
+					
+					return data;
                 });  
                 
                 HttpD.listen(_.LISTEN_PORT );
                 
-                //TODO!    
-                //_.log('Express server listening on '+_.URL_BASE+':'+_.LISTEN_PORT+'/');
+                //_.log('http-d server listening on '+_.URL_BASE+':'+_.LISTEN_PORT+'/');
 
-                
-                if (!show){
-                 var child=ChildProc.spawn("cmd",['/C','START',_.URL_BASE+':'+_.LISTEN_PORT, cmd] );
-                    child.on('error',function (err) { _.err(err);    me.exit(-123);  });
-                    child.on('exit', function (code){ _.log(); });
-                }
             }
             catch (ex) {
                  _.err(ex);

@@ -171,7 +171,7 @@
         ;
         
         // let the computer do the math , that's why we bought it in first place ;)     
-        for (;yy<=YY;yy++) addYearMark(dv,new Date('1-1-'+yy),min,step);
+        for (;yy<=YY;yy++) addYearMark(dv,new Date('1/1/'+yy),min,step);
         
         
         var alt     = _newHtmlEl('div')
